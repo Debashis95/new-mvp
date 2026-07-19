@@ -55,19 +55,39 @@ export function BookCallSection() {
 
   const onSubmit = async (data: FormValues) => {
     setError(null)
-    const { error: dbError } = await supabase.from("discovery_calls").insert({
-      name: data.name,
-      email: data.email,
-      message: data.message ?? null,
-      project_type: data.projectType,
-      selected_date: date ? format(date, "yyyy-MM-dd") : null,
-      selected_time: selectedTime,
-    })
-    if (dbError) {
-      setError("Something went wrong. Please try again.")
-      return
+    try {
+      const { error: dbError } = await supabase.from("discovery_calls").insert({
+        name: data.name,
+        email: data.email,
+        message: data.message ?? null,
+        project_type: data.projectType,
+        selected_date: date ? format(date, "yyyy-MM-dd") : null,
+        selected_time: selectedTime,
+      })
+      if (dbError) {
+        console.error("Supabase insert error:", dbError)
+        const msg = dbError.message?.toLowerCase() || ""
+        if (dbError.code === "42P01") {
+          setError('The "discovery_calls" table does not exist in Supabase. Create it via SQL Editor.')
+        } else if (dbError.code === "42501") {
+          setError("Insert permission denied. Enable RLS insert policy for the anon role on the discovery_calls table.")
+        } else if (msg.includes("failed to fetch") || msg.includes("fetch failed") || msg.includes("networkerror")) {
+          setError("Cannot reach Supabase. Your project may be paused (free tier). Go to Supabase Dashboard and unpause it.")
+        } else {
+          setError(dbError.message)
+        }
+        return
+      }
+      setSubmitted(true)
+    } catch (err) {
+      console.error("Submit error:", err)
+      const msg = String(err).toLowerCase()
+      if (msg.includes("failed to fetch") || msg.includes("fetch failed") || msg.includes("networkerror")) {
+        setError("Cannot reach Supabase. Your project may be paused (free tier). Go to Supabase Dashboard and unpause it.")
+      } else {
+        setError("Something went wrong. Please try again.")
+      }
     }
-    setSubmitted(true)
   }
 
   return (

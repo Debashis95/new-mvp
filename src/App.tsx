@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
 import { WhyFoundersSection } from "@/components/why-founders-section"
@@ -7,10 +8,11 @@ import { TeamSection } from "@/components/team-section"
 import { SelectedWorkSection } from "@/components/selected-work-section"
 import { BookCallSection } from "@/components/book-call-section"
 import { SocialFooterSection } from "@/components/social-footer-section"
+import Admin from "@/pages/Admin"
 
-export default function App() {
+function HomePage() {
   return (
-    <div className="min-h-svh bg-background text-foreground">
+    <>
       <Navbar />
       <main>
         <HeroSection />
@@ -22,6 +24,19 @@ export default function App() {
         <BookCallSection />
       </main>
       <SocialFooterSection />
-    </div>
+    </>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <div className="min-h-svh bg-background text-foreground">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }

@@ -4,19 +4,19 @@ import { Card, CardContent } from "@/components/ui/card"
 
 const team = [
   {
-    name: "Alex Chen",
-    title: "Co-Founder & CTO",
+    name: "Abdul Hai",
+    title: "Co-Founder and Managing Director",
     specialty: "Full Stack",
-    initials: "AC",
-    photo: "/team-alex.webp",
+    initials: "AH",
+    photo: "/team-abdul.jpeg",
     badgeClass: "bg-blue-100 text-blue-700",
   },
   {
-    name: "Jamie Park",
-    title: "Lead Frontend Engineer",
+    name: "Debashis",
+    title: "Software Developer",
     specialty: "React / TypeScript",
-    initials: "JP",
-    photo: "/team-jamie.webp",
+    initials: "D",
+    photo: "/team-debashis.jpeg",
     badgeClass: "bg-violet-100 text-violet-700",
   },
   {
@@ -34,30 +34,6 @@ const team = [
     initials: "SR",
     photo: "/team-sofia.webp",
     badgeClass: "bg-pink-100 text-pink-700",
-  },
-  {
-    name: "Omar Hassan",
-    title: "DevOps Engineer",
-    specialty: "AWS / Kubernetes",
-    initials: "OH",
-    photo: "/team-omar.webp",
-    badgeClass: "bg-orange-100 text-orange-700",
-  },
-  {
-    name: "Elena Kovacs",
-    title: "UI/UX Designer",
-    specialty: "Design Systems",
-    initials: "EK",
-    photo: "/team-elena.webp",
-    badgeClass: "bg-cyan-100 text-cyan-700",
-  },
-  {
-    name: "Ryan Tanaka",
-    title: "AI Engineer",
-    specialty: "LLMs / ML",
-    initials: "RT",
-    photo: "/team-ryan.webp",
-    badgeClass: "bg-amber-100 text-amber-700",
   },
 ]
 

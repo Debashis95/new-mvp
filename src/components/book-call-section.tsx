@@ -71,7 +71,7 @@ export function BookCallSection() {
   }
 
   return (
-    <section className="py-20">
+    <section id="book-call" className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
           <h2 className="scroll-m-20 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
